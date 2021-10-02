@@ -1,12 +1,14 @@
-FROM heroku/nodejs
+FROM node:alpine
 
-WORKDIR /usr/app
+RUN mkdir -p /usr/src/app
 
-COPY package*.json ./
+WORKDIR /usr/src/app
+
+COPY package*.json /usr/src/app/
 
 RUN npm ci
 
-COPY . .
+COPY . /usr/src/app/
 
 RUN npm run build
 
