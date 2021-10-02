@@ -5,17 +5,17 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Build, Push and release a Docker container to Heroku
-        uses: gonuit/heroku-docker-deploy@v1.3.3
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
         with:
-          email: ${{ secrets.HEROKU_EMAIL }}
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
-          dockerfile_directory: ./
-          dockerfile_name: Dockerfile
-          process_type: node
+          node-version: 16
+      - run: npm ci
+      - run: npm run build
+      - uses: w9jds/firebase-action@main
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: { { secrets.FIREBASE_TOKEN } }
