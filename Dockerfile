@@ -1,4 +1,4 @@
-FROM buildpack-deps
+FROM heroku/buildpacks
 
 WORKDIR /usr/app
 
