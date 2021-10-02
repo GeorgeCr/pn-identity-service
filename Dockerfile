@@ -1,4 +1,4 @@
-FROM heroku/node-function-buildpack
+FROM heroku/nodejs
 
 WORKDIR /usr/app
 
