@@ -1,4 +1,4 @@
-name: Stuff Subscriber Backend
+name: PN Identity Service CI
 
 on:
   pull_request:
