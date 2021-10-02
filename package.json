@@ -11,6 +11,9 @@
     "start": "node ./dist/bundle.js",
     "prepare": "husky install"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
